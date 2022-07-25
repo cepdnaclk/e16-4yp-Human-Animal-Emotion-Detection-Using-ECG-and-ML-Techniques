@@ -1,37 +1,57 @@
 {
+    "title": "Human/Animal Emotion Detection Using ECG and ML Techniques",
     "team": [
         {
-            "name": "Team Member Name 1",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Damsy De Silva",
+            "email": "e16069@eng.pdn.ac.lk",
+            "eNumber": "E/16/069"
+            "github_profile": "https://github.com/DamsyDeSilva",
+            "linkedin_profile": "https://www.linkedin.com/in/damsy-de-silva/"
         },
         {
-            "name": "Team Member Name 2",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Chaminie De Silva",
+            "email": "e16070@eng.pdn.ac.lk",
+            "eNumber": "E/16/070",
+            "github_profile": "https://github.com/ChaminieDesilva",
+            "linkedin_profile": " https://www.linkedin.com/in/chaminie-de-silva-04b809213/"
         },
         {
-            "name": "Team Member Name 3",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Shamra Marzook",
+            "email": "e162320@eng.pdn.ac.lk",
+            "eNumber": "E/16/232",
+            "github_profile": "https://github.com/ShamraMarzook",
+            "linkedin_profile": "https://www.linkedin.com/in/shamra-marzook-169a87189"
         }
     ],
     "supervisors": [
         {
-            "name": "Dr. Supervisor 1",
-            "email": "email@eng.pdn.ac.lk"
+            "name": "Prof. Roshan Ragel",
+            "email": "roshanr@eng.pdn.ac.lk",
+            "linkedin_profile": "https://www.linkedin.com/in/roshanragel/",
+            "researchgate_profile": "https://www.researchgate.net/profile/Roshan-Ragel"
         },
         {
-            "name": "Dr. Supervisor 2",
-            "email": "email@eng.pdn.ac.lk"
-        }
-    ],
-    "media": [
+            "name": "Dr. Isuru Nawinne",
+            "email": "isurunawinne@eng.pdn.ac.lk",
+            "linkedin_profile":"https://lk.linkedin.com/in/isuru-nawinne-73302833",
+            "researchgate_profile":"https://www.researchgate.net/profile/Isuru-Nawinne"
+        },
         {
-            "type": "youtube",
-            "title": "",
-            "url": "#"
-        }
+            "name": "Dr. Mahanama Wickramasinghe",
+            "email": "mahanamaw@eng.pdn.ac.lk",
+            "linkedin_profile": "https://www.linkedin.com/in/mahanama",
+            "researchgate_profile": "https://www.researchgate.net/profile/Mahanama-Wickramsinghe"
+        },
+        {
+            "name": "Dr. Suranji Wijekoon",
+            "email": "suranjisk@gmail.com"
+        },
+        {
+            "name": "Mr. Theekshana Dissanayake",
+            "email": "theekshanadis@eng.pdn.ac.lk"
+        },
+        
     ],
-    "tags": ["Final Year Projects"]
+    
+    "tags": ["Electrocardiogram","Machine Learning","ECG", "ML", "Final Year Projects"]
 }
