@@ -1,0 +1,15 @@
+# NPM
+/node_modules
+npm-*
+
+# Editor
+/.idea
+/.vscode
+
+# Build
+build/
+
+# Env Files
+.env
+.env.local
+.env.*.local
