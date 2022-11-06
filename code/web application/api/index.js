@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import subjectRoutes from "./src/routes/subjectRoutes";
+import ecgDataRoutes from "./src/routes/ecgDataRoutes";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/subjects", subjectRoutes);
+app.use("/ecgdata", ecgDataRoutes);
 app.get("/", (req, res) => res.send("Welcome to the ECG-EMOTION-DATASET-API!"));
 app.all("*", (req, res) => res.send("Route doesn't exist."));
 
