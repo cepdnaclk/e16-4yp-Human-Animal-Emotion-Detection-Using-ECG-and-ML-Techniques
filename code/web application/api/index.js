@@ -1,20 +1,30 @@
 import express from "express";
-import dotenv from 'dotenv';
-import cors from 'cors';
+import dotenv from "dotenv";
+import cors from "cors";
+import mongoose from "mongoose";
+
+import subjectRoutes from "./src/routes/subjectRoutes";
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+
+const PORT = process.env.PORT || 5000;
+const CONNECTION_URL = process.env.MONGO_ATLAS_URL;
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/',(req,res) =>{
-    console.log('Test');
-    res.send('Test Server');
-});
+app.use("/subjects", subjectRoutes);
+app.get("/", (req, res) => res.send("Welcome to the ECG-EMOTION-DATASET-API!"));
+app.all("*", (req, res) => res.send("Route doesn't exist."));
 
-app.listen(PORT, () =>
-    console.log(`Server running on PORT : http://localhost:${PORT}`)
-);
+mongoose
+  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log(`DB connected`);
+    app.listen(PORT, () =>
+      console.log(`Server running on http://localhost:${PORT}`)
+    );
+  })
+  .catch((error) => console.log(`${error} did not connect`));
