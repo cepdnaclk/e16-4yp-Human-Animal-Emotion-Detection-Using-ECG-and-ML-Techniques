@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Register from "./components/registrationComponent";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import HeaderBar from "./components/headerComponent";
+import SelectVideo from "./components/selectVideoComponent";
+import PlayVideo from "./components/playWindowComponent";
+import FeedbackForm from "./components/feedbackComponent";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div >
+            <HeaderBar/>
+            <BrowserRouter>
+                <Routes>
+                    <Route exact path='/' element={<Register/>}></Route>
+                    <Route exact path='/videos' element={<SelectVideo/>}/>
+                    <Route exact path={'/play'} element={<PlayVideo/>}/>
+                    <Route exact path={'/feedback'} element={<FeedbackForm/>}/>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
