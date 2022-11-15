@@ -26,8 +26,8 @@ const useStyle = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             padding: 5,
         },
-        background: "#164773",
-        color: '#AEB7BF'
+        background: "#AEB7BF",
+        /*color: '#AEB7BF'*/
     },
     search: {
         position: 'relative',
@@ -88,7 +88,7 @@ export default function HeaderBar() {
     const classes = useStyle();
     return (
             <div className={classes.header}>
-                <AppBar position='static' className={classes.bar}>
+                <AppBar position='static' >
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" noWrap>
                             Data Collector
@@ -99,19 +99,15 @@ export default function HeaderBar() {
                         <Link href="/videos">
                             <Button variant="contained" className={classes.login} >Select Videos</Button>
                         </Link>
-                        <Link href="/play">
+                        {/*<Link href="/play">
                             <Button variant="contained" className={classes.login} >Play</Button>
                         </Link>
                         <Link href="/feedback">
                             <Button variant="contained" className={classes.login} >Feedback</Button>
-                        </Link>
+                        </Link>*/}
                     </Toolbar>
                 </AppBar>
             </div>
-
-
-
-
     );
 
 }
