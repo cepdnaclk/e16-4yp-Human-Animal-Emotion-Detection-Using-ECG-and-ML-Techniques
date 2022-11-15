@@ -1,60 +1,66 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
-
+import React, {useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import {Button, FormControl, Grid, MenuItem, TextField} from "@material-ui/core";
 
 
 export default function Register(){
     let navigate = useNavigate();
-    function handleSubmit(values) {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
+
+    const handleSubmit = event =>{
         let path = `/videos`;
-        navigate(path);
+        navigate(path, {
+            state: {name: firstName,}
+        });
+        setFirstName('');
+        setLastName('');
+        setAge('');
+        setGender('');
     }
 
     return(
-        <div>
-            <div className="Auth-form-container">
-                <form className="Auth-form" onSubmit={(values) => handleSubmit(values)}>
-                    <div className="Auth-form-content">
-                        <h3 className="Auth-form-title">Subject Registration Form </h3>
-                        <div className="form-group mt-3">
-                            <label>First Name</label>
-                            <input
-                                type="text"
-                                className="form-control mt-1"
-                                placeholder="first name"
-                            />
-                        </div>
-                        <div className="form-group mt-3">
-                            <label>Last Name</label>
-                            <input
-                                type="text"
-                                className="form-control mt-1"
-                                placeholder="last name"
-                            />
-                        </div>
-                        <div className="form-group mt-3">
-                            <label>Age</label>
-                            <input
-                                type="number"
-                                className="form-control mt-1"
-                                placeholder="age in years"
-                            />
-                        </div>
-                        <div className="form-group mt-3">
-                            <label>Gender</label>
-                            <select >
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
-                            </select>
-                        </div>
-                        <div className="d-grid gap-2 mt-3">
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Grid container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center">
+
+
+        <form onSubmit={handleSubmit}>
+            <h2 style={{textAlign: "center"}}>Registration Form</h2>
+
+            {/* first name */}
+            <FormControl fullWidth>
+            <TextField required label="First Name"  value={firstName} onChange={event => setFirstName(event.target.value)}/> <br/>
+            </FormControl>
+
+            {/* last name */}
+            <FormControl fullWidth>
+            <TextField required label="Last Name" value={lastName} onChange={event => setLastName(event.target.value)}/> <br/>
+            </FormControl>
+
+            {/* age */}
+            <FormControl fullWidth>
+            <TextField  required label="Age" value={age} onChange={event => setAge(event.target.value)}/> <br/>
+            </FormControl>
+            {/* gender */}
+            <FormControl fullWidth>
+                <TextField required select label="Gender" value={gender} onChange={event => setGender(event.target.value)}>
+                    <MenuItem value='male'>Male</MenuItem>
+                    <MenuItem value='female'>Female</MenuItem>
+                </TextField>
+            </FormControl>
+
+            <FormControl fullWidth>
+            <Button type="submit" variant="contained" style={{marginTop: 20}} >
+                Register
+            </Button>
+        </FormControl>
+
+        </form>
+        </Grid>
     )
 }

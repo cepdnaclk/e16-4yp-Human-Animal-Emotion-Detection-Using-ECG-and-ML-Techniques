@@ -15,7 +15,7 @@ function App() {
                 <Routes>
                     <Route exact path='/' element={<Register/>}></Route>
                     <Route exact path='/videos' element={<SelectVideo/>}/>
-                    <Route exact path={'/play'} element={<PlayVideo/>}/>
+                    <Route exact path={'/play/:id'} element={<PlayVideo/>}/>
                     <Route exact path={'/feedback'} element={<FeedbackForm/>}/>
                 </Routes>
             </BrowserRouter>
