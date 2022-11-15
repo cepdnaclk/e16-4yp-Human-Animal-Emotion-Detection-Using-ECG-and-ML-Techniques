@@ -25,13 +25,6 @@ class FeedbackComponent extends Component {
     selectedEmotion;
     start;
     end;
-    handleSubmit = () => {
-        /*remove emotion from the emotion list and put the climax into the array*/
-        let temp = this.state.climaxes;
-        temp.push([this.selectedEmotion, this.start, this.end])
-        this.setState({climaxes: temp});
-        console.log(this.state.climaxes);
-    };
 
     render() {
         return (
@@ -101,7 +94,7 @@ class FeedbackComponent extends Component {
                                 <source src="../videos/video3.mp4" type="video/mp4"/>
                             </video>
 
-                            <form onSubmit={this.handleSubmit}>
+                            <form >
                                 <FormControl style={{width: '40%', margin: 4}}>
                                     <TextField required select id="emotion" variant="outlined" label="Select emotion"
                                                onChange={(event) => {
@@ -126,7 +119,11 @@ class FeedbackComponent extends Component {
                                                }}/>
                                 </FormControl>
                                 <FormControl style={{width: '40%', margin: 4, marginTop: 13}}>
-                                    <Button type="submit" size="large" variant="contained" >Add</Button>
+                                    <Button onClick={() => {
+                                        let temp = this.state.climaxes;
+                                        temp.push([this.selectedEmotion, this.start, this.end])
+                                        this.setState({climaxes: temp});
+                                    }} size="large" variant="contained" >Add</Button>
                                 </FormControl>
                             </form>
                         </Grid>
