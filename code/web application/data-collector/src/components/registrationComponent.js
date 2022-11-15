@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
-
+import {useNavigate} from 'react-router-dom';
+import {Button, FormControl, Grid, MenuItem, TextField} from "@material-ui/core";
 
 
 export default function Register(){
@@ -22,52 +22,45 @@ export default function Register(){
     }
 
     return(
-        <div>
-            <div >
-                <form onSubmit={ handleSubmit}>
-                    <div >
-                        <h3 >Subject Registration Form </h3>
-                        <div >
-                            <label>First Name</label>
-                            <input
-                                type="text"
-                                placeholder="first name"
-                                id="firstname"
-                                value={firstName}
-                                onChange={event => setFirstName(event.target.value)}
-                            />
-                        </div>
-                        <div >
-                            <label>Last Name</label>
-                            <input
-                                type="text"
-                                placeholder="last name"
-                                id="lastname"
-                            />
-                        </div>
-                        <div className="form-group mt-3">
-                            <label>Age</label>
-                            <input
-                                type="number"
-                                placeholder="age in years"
-                                id="age"
-                            />
-                        </div>
-                        <div >
-                            <label>Gender</label>
-                            <select id="gender" >
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
-                            </select>
-                        </div>
-                        <div >
-                            <button type="submit" >
-                                Register
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Grid container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center">
+
+
+        <form onSubmit={handleSubmit}>
+            <h2 style={{textAlign: "center"}}>Registration Form</h2>
+
+            {/* first name */}
+            <FormControl fullWidth>
+            <TextField required label="First Name"  value={firstName} onChange={event => setFirstName(event.target.value)}/> <br/>
+            </FormControl>
+
+            {/* last name */}
+            <FormControl fullWidth>
+            <TextField required label="Last Name" value={lastName} onChange={event => setLastName(event.target.value)}/> <br/>
+            </FormControl>
+
+            {/* age */}
+            <FormControl fullWidth>
+            <TextField  required label="Age" value={age} onChange={event => setAge(event.target.value)}/> <br/>
+            </FormControl>
+            {/* gender */}
+            <FormControl fullWidth>
+                <TextField required select label="Gender" value={gender} onChange={event => setGender(event.target.value)}>
+                    <MenuItem value='male'>Male</MenuItem>
+                    <MenuItem value='female'>Female</MenuItem>
+                </TextField>
+            </FormControl>
+
+            <FormControl fullWidth>
+            <Button type="submit" variant="contained" style={{marginTop: 20}} >
+                Register
+            </Button>
+        </FormControl>
+
+        </form>
+        </Grid>
     )
 }
