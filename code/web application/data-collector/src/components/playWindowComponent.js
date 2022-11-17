@@ -19,7 +19,7 @@ export default function PlayVideo() {
 
     const end = () => {
         sleep(1000); /* sleep for 1s*/
-        navigate('/feedback');
+        navigate('/feedback/'.concat(id.toString()));
     }
 
     const handlePlay = () => {
@@ -27,7 +27,6 @@ export default function PlayVideo() {
         video.requestFullscreen();
         video.play();
         /* start storing data */
-        console.log("Played");
         setIsDisabled(true);
 
     }
