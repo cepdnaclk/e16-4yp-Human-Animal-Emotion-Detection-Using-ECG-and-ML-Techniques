@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Button, Grid} from "@material-ui/core";
 import * as PropTypes from "prop-types";
@@ -11,16 +11,26 @@ function Item(props) {
 Item.propTypes = {children: PropTypes.node};
 export default function SelectVideo() {
     const location = useLocation();
+    const [name, setName] = useState('');
+    const [id, setId] = useState('');
     let navigate = useNavigate();
-    let name = "";
-    name = location.state ? location.state.name : name;
+
+    useEffect(() =>{
+        let subject = localStorage.getItem('subject');
+        setName(location.state ? location.state.name : name);
+        setId(location.state ? location.state.id : id);
+
+        /* set name if state does not contains the name*/
+        if(name === '' && localStorage.getItem('subject') != null) {
+            setName(JSON.parse(subject).first_name);
+        }
+    }, [location.state, name, id])
     return (
         <div style={{textAlign: "center"}}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <div >
-                        <h3> Name: {name.toUpperCase()} </h3>
-                        <h3> Subject ID: XXX </h3>
+                        <h3> Name: {name} </h3>
                     </div>
                 </Grid>
                 <Grid item xs={3}></Grid>
