@@ -96,9 +96,9 @@ export default function HeaderBar() {
                         <Link href="/">
                             <Button variant="contained" className={classes.login} >Register</Button>
                         </Link>
-                        <Link href="/videos">
+                       {/* <Link href="/videos">
                             <Button variant="contained" className={classes.login} >Select Videos</Button>
-                        </Link>
+                        </Link>*/}
                         {/*<Link href="/play">
                             <Button variant="contained" className={classes.login} >Play</Button>
                         </Link>
