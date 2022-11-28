@@ -1,7 +1,7 @@
 import {Component, React} from "react";
 import {
-    Button,
-    FormControl,
+    Button, Checkbox,
+    FormControl, FormControlLabel,
     Grid,
     MenuItem,
     Paper,
@@ -20,7 +20,7 @@ class FeedbackComponent extends Component {
 
     state = {
         valance: 0, arousal: 0, dominance: 0, showValance: true, showArousal: false, showDominance: false,
-        showClimaxForm: false, climaxes: [], emotions: ['Happy', 'Sad'], climaxesAsString: [],
+        showClimaxForm: false, climaxes: [], emotions: ['Happy', 'Sad'], climaxesAsString: [], label: '', felt: false
     };
     /* list of all emotions*/
     selectedEmotion;
@@ -34,6 +34,7 @@ class FeedbackComponent extends Component {
         console.log(id)
         const path = "../videos/video".concat(id.toString()).concat(".mp4");
         this.setState({path: path});
+        this.setState({label: "Did you felt ".concat(this.state.emotions[id-1].toString())});
 
     }
 
@@ -43,7 +44,7 @@ class FeedbackComponent extends Component {
             <div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} style={{textAlign: "center"}}>
-                        <div hidden={!this.state.showValance} style={{width: '75%', marginLeft: 50}}>
+                        <div hidden={!this.state.showValance} style={{width: '75%', marginLeft: 200}}>
                             <h3>Valance</h3>
                             <h5>Select the valance level felt</h5>
                             <img src={"../capture1.jpg"} height='200px' width='100%' alt={'valance '}/>
@@ -58,7 +59,7 @@ class FeedbackComponent extends Component {
                             }}>Next</Button>
                         </div>
 
-                        <div hidden={!this.state.showArousal} style={{width: '75%', marginLeft: 50}}>
+                        <div hidden={!this.state.showArousal} style={{width: '75%', marginLeft: 200}}>
                             <h3>Arousal</h3>
                             <h5>Select the arousal level felt</h5>
                             <img src={"../capture2.jpg"} height='200px' width='100%' alt={'valance '}/>
@@ -76,7 +77,7 @@ class FeedbackComponent extends Component {
                             }}>Next</Button>
                         </div>
 
-                        <div hidden={!this.state.showDominance} style={{width: '75%', marginLeft: 50}}>
+                        <div hidden={!this.state.showDominance} style={{width: '75%', marginLeft: 200}}>
                             <h3>Dominance</h3>
                             <h5>Select the dominance level felt</h5>
                             <img src={"../capture3.jpg"} height='200px' width='100%' alt={'valance '}/>
@@ -107,7 +108,18 @@ class FeedbackComponent extends Component {
                             </video>
 
                             <form>
-                                <FormControl style={{width: '40%', margin: 4}}>
+                                <FormControl style={{width: '60%', margin: 4}}>
+                                    <FormControlLabel
+                                        value="felt"
+                                        control={<Checkbox />}
+                                        label={this.state.label}
+                                        labelPlacement="start"
+                                        onChange={() => {
+                                            this.setState({felt: !this.state.felt});
+                                        }}
+                                    />
+                                </FormControl>
+                                {/*<FormControl style={{width: '40%', margin: 4}}>
                                     <TextField required select id="emotion" variant="outlined" label="Select emotion"
                                                onChange={(event) => {
                                                    this.selectedEmotion = event.target.value
@@ -117,7 +129,7 @@ class FeedbackComponent extends Component {
                                                 <MenuItem value={emo} key={emo}>{emo}</MenuItem>
                                             ))}
                                     </TextField>
-                                </FormControl>
+                                </FormControl>*/}
                                 <FormControl style={{width: '40%', margin: 4}}>
                                     <TextField required id="start" variant="outlined" label="Start of the climax"
                                                onChange={(event) => {
@@ -130,7 +142,7 @@ class FeedbackComponent extends Component {
                                                    this.end = event.target.value
                                                }}/>
                                 </FormControl>
-                                <FormControl style={{width: '40%', margin: 4, marginTop: 13}}>
+                                <FormControl style={{width: '40%', margin: 4, marginTop: 13, marginLeft: 150}}>
                                     <Button onClick={() => {
                                         let temp = this.state.climaxes;
                                         temp.push([this.selectedEmotion, this.start, this.end])
@@ -180,7 +192,7 @@ class FeedbackComponent extends Component {
                                         body: JSON.stringify({
                                             "subject_id": "636773ec85925a79825203b0",
                                             "emotion": this.selectedEmotion,
-                                            "emotion_success": true,
+                                            "emotion_success": this.state.felt,
                                             "ecg_readings": [],
                                             "climaxes": this.state.climaxesAsString,
                                             "valence": this.state.valance,
