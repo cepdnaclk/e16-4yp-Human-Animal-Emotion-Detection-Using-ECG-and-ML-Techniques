@@ -3,6 +3,7 @@ import serial
 import continuous_threading
 import os
 import datetime
+from flask_cors import CORS
 
 COM_PORT = "COM3"
 BAUD_RATE = 9600
@@ -22,6 +23,7 @@ if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
 app = Flask(__name__)
+CORS(app)
 
 serialPort = serial.Serial(port=COM_PORT, baudrate=BAUD_RATE, bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE)
 print(serialPort)
@@ -46,8 +48,15 @@ def start_serial():
     if request.method == 'POST':
         start = True
         save_file = False
-        subject_id = request.form['subjectId']
-        emotion = request.form['emotion']
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            request_data = request.json
+            subject_id = str(request_data['subjectId'])
+            emotion = str(request_data['emotion'])
+        else:
+            return 'Content-Type not supported!'
+        
+
         start_time = str(datetime.datetime.now()).split('.')[0].replace(":", "_")
         
         print("Subject_" + subject_id + " started")
