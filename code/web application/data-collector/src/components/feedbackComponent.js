@@ -248,9 +248,9 @@ class FeedbackComponent extends Component {
                                                 console.log(error);
                                             }
                                         )
-                                        /* .then( () => {
+                                         .then( () => {
                                            window.location.replace("/videos")
-                                        }) */
+                                        })
 
 
                                 }
