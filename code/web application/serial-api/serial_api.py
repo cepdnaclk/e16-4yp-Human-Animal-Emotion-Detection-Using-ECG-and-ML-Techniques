@@ -3,17 +3,19 @@ import serial
 import continuous_threading
 import os
 import datetime
+import time
 from flask_cors import CORS
 
 COM_PORT = "COM3"
-BAUD_RATE = 9600
+BAUD_RATE = 115200
 
 SAVE_DIR = "DATA_FILES/"
 
 subject_id = ""
 emotion = ""
-start_time = ""
+start_datetime = ""
 data_points = []
+start_time = ""
 
 start = False
 save_file = False
@@ -40,12 +42,14 @@ def start_serial():
     global save_file
     global subject_id
     global emotion
+    global start_datetime
     global start_time
 
     if request.method == 'GET':
         return "serial start end-point - Use POST to start reading"
 
     if request.method == 'POST':
+        start_time = time.time()
         start = True
         save_file = False
         content_type = request.headers.get('Content-Type')
@@ -57,7 +61,8 @@ def start_serial():
             return 'Content-Type not supported!'
         
 
-        start_time = str(datetime.datetime.now()).split('.')[0].replace(":", "_")
+        start_datetime = str(datetime.datetime.now()).split('.')[0].replace(":", "_")
+        
         
         print("Subject_" + subject_id + " started")
         
@@ -88,8 +93,9 @@ def serial_communication():
     global subject_id
     global emotion
     global SAVE_DIR
+    global start_datetime
+    global start_time
     
-
     while(True):
         # print("Thread running")
         if (start):
@@ -100,9 +106,14 @@ def serial_communication():
 
                 # Read data out of the buffer until a new line is found
                 serial_string = serialPort.readline()
-                
-                # print(serialString.decode('Ascii'))
-                data_points.append(serial_string.decode('Ascii').rstrip('\r\n'))        
+                elapsed_time = time.time() - start_time
+                # string = 
+                # print(string)
+                try:
+                    data_points.append(str(format(elapsed_time, '.3f'))+":"+str(serial_string.decode('Ascii').rstrip('\r\n')))
+                except:
+                    pass
+
                 
 
         if((not start) and save_file):
@@ -117,7 +128,7 @@ def serial_communication():
             if not os.path.exists(os.path.join(SAVE_DIR,"S-"+subject_id, emotion)):
                 os.makedirs(os.path.join(SAVE_DIR,"S-"+subject_id, emotion))
 
-            file_name = "S-"+subject_id+"_"+emotion+"_"+ start_time +".txt"
+            file_name = "S-"+subject_id+"_"+emotion+"_"+ start_datetime +".txt"
             with open((os.path.join(SAVE_DIR,"S-"+subject_id, emotion, file_name)), 'w') as f:
                 for line in data_points:
                     f.write(f"{line}\n")
