@@ -15,13 +15,13 @@ export default function SelectVideo() {
     const [id, setId] = useState('');
     let navigate = useNavigate();
 
-    useEffect(() =>{
+    useEffect(() => {
         let subject = localStorage.getItem('subject');
         setName(location.state ? location.state.name : name);
         setId(location.state ? location.state.id : id);
 
         /* set name if state does not contains the name*/
-        if(name === '' && localStorage.getItem('subject') != null) {
+        if (name === '' && localStorage.getItem('subject') != null) {
             setName(JSON.parse(subject).first_name);
         }
     }, [location.state, name, id])
@@ -29,12 +29,28 @@ export default function SelectVideo() {
         <div style={{textAlign: "center"}}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <div >
+                    <div>
                         <h3> Name: {name} </h3>
                     </div>
                 </Grid>
                 <Grid item xs={3}></Grid>
                 <Grid item xs={3}>
+
+                    {/*
+                    Amusement
+                    Anger
+                    Anxiety - 2
+                    Disgust - 7
+                    Fear - 8
+                    Happy -3
+                    Interest
+                    Irritation - 6
+                    Joy
+                    Neutral
+                    Relief -1
+                    Sad -4
+                    Surprise -5
+                    */}
                     <ul style={{listStyle: "none"}}>
                         <li><Button variant="contained" onClick={() => navigate("/play/1")} style={{marginTop: 20}}>Video
                             01</Button></li>
