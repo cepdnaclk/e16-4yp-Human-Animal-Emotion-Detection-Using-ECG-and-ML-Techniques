@@ -14,6 +14,13 @@ export default function Register() {
 
     const handleSubmit = event => {
 
+        localStorage.setItem('subject_details', JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            age: age,
+            gender: gender,
+            collection_location: location
+        }));
         /* send data to database */
         const requestOptions = {
             method: 'POST',
