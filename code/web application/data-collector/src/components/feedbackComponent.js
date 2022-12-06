@@ -3,7 +3,6 @@ import {
     Button, Checkbox,
     FormControl, FormControlLabel,
     Grid,
-    MenuItem,
     Paper,
     Slider,
     Table,
@@ -20,7 +19,9 @@ class FeedbackComponent extends Component {
 
     state = {
         valance: 0, arousal: 0, dominance: 0, showValance: true, showArousal: false, showDominance: false,
-        showClimaxForm: false, climaxes: [], emotions: ['Happy', 'Sad'], climaxesAsString: [], label: '', felt: false
+        showClimaxForm: false, climaxes: [],
+        emotions: ['Relief', 'Anxiety', 'Happy', 'Sad', 'Surprise', 'Irritation', 'Disgust', 'Fear', 'Amusement', 'Anger',   'Interest',  'Joy', 'Neutral'  ],
+        climaxesAsString: [], label: '', felt: false, relavant_emotion: ''
     };
     /* list of all emotions*/
     selectedEmotion;
@@ -35,6 +36,7 @@ class FeedbackComponent extends Component {
         const path = "../videos/video".concat(id.toString()).concat(".mp4");
         this.setState({path: path});
         this.setState({label: "Did you felt ".concat(this.state.emotions[id-1].toString())});
+        this.setState({relavant_emotion:this.state.emotions[id-1].toString() })
 
     }
 
@@ -45,8 +47,9 @@ class FeedbackComponent extends Component {
                 <Grid container spacing={2}>
                     <Grid item xs={12} style={{textAlign: "center"}}>
                         <div hidden={!this.state.showValance} style={{width: '75%', marginLeft: 200}}>
-                            <h3>Valance</h3>
-                            <h5>Select the valance level felt</h5>
+                            <h3>Positivity and Negativity of the Emotion </h3>
+                            <h5>Select the positive, negative level of the emotion you felt. Valence is a measure of pleasure,
+                                defined by a polarity of positive or negative feelings.</h5>
                             <img src={"../capture1.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div>Level: {this.state.valance}</div>
                             <Slider aria-label="Valance" size='medium' value={this.state.valance}
@@ -61,7 +64,8 @@ class FeedbackComponent extends Component {
 
                         <div hidden={!this.state.showArousal} style={{width: '75%', marginLeft: 200}}>
                             <h3>Arousal</h3>
-                            <h5>Select the arousal level felt</h5>
+                            <h5>arousal describes the level of activation and intensity concerning emotional
+                                stimulation, varying from low/calmness to high/excitement, or even passive and active.</h5>
                             <img src={"../capture2.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div>Level: {this.state.arousal}</div>
                             <Slider aria-label="Arousal" size='medium' value={this.state.arousal}
@@ -79,7 +83,8 @@ class FeedbackComponent extends Component {
 
                         <div hidden={!this.state.showDominance} style={{width: '75%', marginLeft: 200}}>
                             <h3>Dominance</h3>
-                            <h5>Select the dominance level felt</h5>
+                            <h5>Dominance is related to the subject’s feeling of
+                                control, indicating if the human feels without control or empowered (dominant vs. submissive)</h5>
                             <img src={"../capture3.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div> Level: {this.state.dominance}</div>
                             <Slider aria-label="Dominance" size='medium' value={this.state.dominance}
@@ -145,7 +150,7 @@ class FeedbackComponent extends Component {
                                 <FormControl style={{width: '40%', margin: 4, marginTop: 13, marginLeft: 150}}>
                                     <Button onClick={() => {
                                         let temp = this.state.climaxes;
-                                        temp.push([this.selectedEmotion, this.start, this.end])
+                                        temp.push([this.relavant_emotion, this.start, this.end])
                                         this.setState({climaxes: temp});
 
                                         let clStr = this.state.climaxesAsString;
@@ -174,9 +179,9 @@ class FeedbackComponent extends Component {
                                             {this.state.climaxes.length === 0 ?
                                                 <TableRow><TableCell></TableCell><TableCell> No Entries to
                                                     Show</TableCell></TableRow> : this.state.climaxes.map(value => (
-                                                    <TableRow key={value[0]}
+                                                    <TableRow key={this.state.relavant_emotion}
                                                               sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                                                        <TableCell>{value[0]}</TableCell>
+                                                        <TableCell>{this.state.relavant_emotion}</TableCell>
                                                         <TableCell>{value[1]}</TableCell>
                                                         <TableCell>{value[2]}</TableCell>
                                                     </TableRow>
@@ -185,13 +190,43 @@ class FeedbackComponent extends Component {
                                     </Table>
                                 </TableContainer>
                                 <Button variant="contained" style={{marginTop: 10}} onClick={({route, navigation, ...props}) => {
+                                  const sub_de = JSON.parse(localStorage.getItem('subject_details'));
+                                  const file_name = sub_de.first_name.concat('_').concat(this.state.relavant_emotion).concat(".json");
+                                    // Data which will write in a file.
+                                    let data = JSON.stringify({
+                                        //"subject_id": "636773ec85925a79825203b0",
+                                        "first_name": sub_de.first_name,
+                                        "last_name": sub_de.last_name,
+                                        "age": sub_de.age,
+                                        "gender": sub_de.gender,
+                                        "location": sub_de.location,
+                                        "emotion": this.state.relavant_emotion,
+                                        "emotion_success": this.state.felt,
+                                        "ecg_readings": [],
+                                        "climaxes": this.state.climaxesAsString,
+                                        "valence": this.state.valance,
+                                        "arousal": this.state.arousal,
+                                        "dominance": this.state.dominance
+                                    });
 
+                                    const url = window.URL.createObjectURL(new Blob([data]));
+                                    const link = document.createElement('a');
+                                    link.href = url;
+                                    link.setAttribute(
+                                        'download',
+                                        file_name,
+                                    );
+
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    link.parentNode.removeChild(link);
+                    
                                     const requestOptions = {
                                         method: 'POST',
                                         headers: {'Content-Type': 'application/json'},
-                                        body: JSON.stringify({
-                                            "subject_id": "636773ec85925a79825203b0",
-                                            "emotion": this.selectedEmotion,
+                                        body:JSON.stringify({
+                                            "subject_id": JSON.parse(localStorage.getItem('subject'))._id,
+                                            "emotion": this.state.relavant_emotion,
                                             "emotion_success": this.state.felt,
                                             "ecg_readings": [],
                                             "climaxes": this.state.climaxesAsString,
@@ -205,16 +240,17 @@ class FeedbackComponent extends Component {
                                         .then(res => res.json())
                                         .then(
                                             (data) => {
-                                                console.log(data);
+                                                console.log("ECG data sent");
+                                                console.log(requestOptions);
                                                 localStorage.setItem('ecgdata', JSON.stringify(data));
                                             },
                                             (error) => {
                                                 console.log(error);
                                             }
                                         )
-                                        .then( () => {
+                                        /* .then( () => {
                                            window.location.replace("/videos")
-                                        })
+                                        }) */
 
 
                                 }
