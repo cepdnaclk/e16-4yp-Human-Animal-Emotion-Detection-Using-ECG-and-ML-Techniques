@@ -9,7 +9,7 @@ export default function PlayVideo() {
     const [isDisabled, setIsDisabled] = useState(false);
     const path = "../videos/video".concat(id.toString()).concat(".mp4");
     const navigate = useNavigate();
-    const emotions = ['Relief', 'Anxiety', 'Happy', 'Sad', 'Surprise', 'Irritation', 'Disgust', 'Fear', 'Amusement', 'Anger',   'Interest',  'Joy', 'Neutral'  ];
+    const emotions = ['Relief', 'Anxiety', 'Happy', 'Sad', 'Surprise', 'Irritation', 'Disgust', 'Fear', 'Neutral', 'Amusement', 'Anger',   'Interest',  'Joy'  ];
 
     function sleep(milliseconds) {
         const date = Date.now();

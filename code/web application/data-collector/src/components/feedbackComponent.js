@@ -20,7 +20,7 @@ class FeedbackComponent extends Component {
     state = {
         valance: 0, arousal: 0, dominance: 0, showValance: true, showArousal: false, showDominance: false,
         showClimaxForm: false, climaxes: [],
-        emotions: ['Relief', 'Anxiety', 'Happy', 'Sad', 'Surprise', 'Irritation', 'Disgust', 'Fear', 'Amusement', 'Anger',   'Interest',  'Joy', 'Neutral'  ],
+        emotions: ['Relief', 'Anxiety', 'Happy', 'Sad', 'Surprise', 'Irritation', 'Disgust', 'Fear', 'Neutral', 'Amusement', 'Anger',   'Interest',  'Joy'  ],
         climaxesAsString: [], label: '', felt: false, relavant_emotion: ''
     };
     /* list of all emotions*/
@@ -191,10 +191,11 @@ class FeedbackComponent extends Component {
                                 </TableContainer>
                                 <Button variant="contained" style={{marginTop: 10}} onClick={({route, navigation, ...props}) => {
                                   const sub_de = JSON.parse(localStorage.getItem('subject_details'));
+                                  const sub = JSON.parse(localStorage.getItem('subject'));
                                   const file_name = sub_de.first_name.concat('_').concat(this.state.relavant_emotion).concat(".json");
                                     // Data which will write in a file.
                                     let data = JSON.stringify({
-                                        //"subject_id": "636773ec85925a79825203b0",
+                                        "subject_id": sub._id,
                                         "first_name": sub_de.first_name,
                                         "last_name": sub_de.last_name,
                                         "age": sub_de.age,
