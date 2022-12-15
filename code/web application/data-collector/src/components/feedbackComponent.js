@@ -47,9 +47,8 @@ class FeedbackComponent extends Component {
                 <Grid container spacing={2}>
                     <Grid item xs={12} style={{textAlign: "center"}}>
                         <div hidden={!this.state.showValance} style={{width: '75%', marginLeft: 200}}>
-                            <h3>Positivity and Negativity of the Emotion </h3>
-                            <h5>Select the positive, negative level of the emotion you felt. Valence is a measure of pleasure,
-                                defined by a polarity of positive or negative feelings.</h5>
+                            {/*<h3>Positivity and Negativity of the Emotion </h3>*/}
+                            <h4>Rate the positive, negative level of the emotion you felt</h4>
                             <img src={"../capture1.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div>Level: {this.state.valance}</div>
                             <Slider aria-label="Valance" size='medium' value={this.state.valance}
@@ -63,9 +62,8 @@ class FeedbackComponent extends Component {
                         </div>
 
                         <div hidden={!this.state.showArousal} style={{width: '75%', marginLeft: 200}}>
-                            <h3>Arousal</h3>
-                            <h5>arousal describes the level of activation and intensity concerning emotional
-                                stimulation, varying from low/calmness to high/excitement, or even passive and active.</h5>
+                            {/*<h3>Arousal</h3>*/}
+                            <h4>Rate the level of activation and intensity concerning this video clip</h4>
                             <img src={"../capture2.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div>Level: {this.state.arousal}</div>
                             <Slider aria-label="Arousal" size='medium' value={this.state.arousal}
@@ -82,9 +80,10 @@ class FeedbackComponent extends Component {
                         </div>
 
                         <div hidden={!this.state.showDominance} style={{width: '75%', marginLeft: 200}}>
-                            <h3>Dominance</h3>
-                            <h5>Dominance is related to the subject’s feeling of
-                                control, indicating if the human feels without control or empowered (dominant vs. submissive)</h5>
+                            {/*<h3>Dominance</h3>*/}
+                            <h4>Rate your level of without control or empowered in response to this video clip</h4>
+                            {/*<h4>Dominance is related to the subject’s feeling of
+                                control, indicating if the human feels without control or empowered (dominant vs. submissive)</h4>*/}
                             <img src={"../capture3.jpg"} height='200px' width='100%' alt={'valance '}/>
                             <div> Level: {this.state.dominance}</div>
                             <Slider aria-label="Dominance" size='medium' value={this.state.dominance}
