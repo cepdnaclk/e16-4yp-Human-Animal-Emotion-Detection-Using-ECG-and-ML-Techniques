@@ -1,1 +1,1 @@
-web application for data collection
+Web Application for Data Collection
