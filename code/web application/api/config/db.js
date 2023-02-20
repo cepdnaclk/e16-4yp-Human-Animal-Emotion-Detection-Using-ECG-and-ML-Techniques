@@ -1,10 +1,6 @@
 // Export mongoose
 const mongoose = require("mongoose");
 
-//Assign MongoDB connection string to Uri and declare options settings
-var uri =
-  "mongodb+srv://buddy-works:fabregas10@cluster0-8iysb.mongodb.net/test?retryWrites=true&w=majority";
-
 // Declare a variable named option and assign optional settings
 const options = {
   useNewUrlParser: true,
