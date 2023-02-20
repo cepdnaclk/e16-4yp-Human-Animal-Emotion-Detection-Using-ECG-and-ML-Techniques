@@ -44,7 +44,7 @@ Different kinds of machine learning models have recently been used by researcher
 ## Methodology
 
 <p align="center">
-    <img src="./images/Method%20Overview.png"  width="250" /><br />
+    <img src="./images/Method Overview.png"  width="250" /><br />
     <span><i>Figure 01: Method Overview</i></span>
 </p>
 
