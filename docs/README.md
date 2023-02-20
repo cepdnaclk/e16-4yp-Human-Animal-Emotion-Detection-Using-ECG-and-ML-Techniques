@@ -43,9 +43,12 @@ Different kinds of machine learning models have recently been used by researcher
 ## Related works
 
 ## Methodology
-
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Methodology%20Overview.png)
 ## Experiment Setup and Implementation
-
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Human.jpeg)
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Human.jpg)
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Animal.png)
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Animal.jpg)
 ## Results and Analysis
 
 ## Conclusion
