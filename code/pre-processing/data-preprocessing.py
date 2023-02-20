@@ -4,6 +4,7 @@ from scipy.signal import butter, lfilter
 from scipy import signal
 import numpy
 import time
+from peakutils.peak import indexes
 
 DATA_DIR = "sample_data/"
 
@@ -110,17 +111,160 @@ def pre_processing(ecg_signal):
     # return smoothed
 
 
-ecg_signal = read(DATA_DIR+'/sample_data_2022-12-06 14_14_57.txt')
 
-print(len(ecg_signal))
+def find_r(ecg_signal, md=550):
+    '''
+    Detect the R peak of a signal distance interval is 550 points
+    :param ecg_signal:
+    :param md: default 550 indexes
+    :return: return R_index, R_magnitude
+    '''
+    index = indexes(numpy.array(ecg_signal), thres=0.70, min_dist=md)
+    value = []
+    for v in index:
+        value.append(ecg_signal[v])
+
+    return index, value
+
+
+def get_s(wave):
+    '''
+    Get the S position of a ECG wave
+    :param wave: segmented ECG wave
+    :return: index of S and magnitude
+    '''
+    sort_ = sorted(wave[200:300])
+    min_ = sort_[0]
+    return wave.index(min_), min_
+
+
+def get_q(wave):
+    '''
+    Get the Q position of a ECG wave
+    :param wave: segmented ECG wave
+    :return: index of Q and magnitude
+    '''
+    sort_ = sorted(wave[150:200])
+    min_ = sort_[0]
+    return wave.index(min_), min_
+
+
+def get_p(wave, q):
+    '''
+    Get the P position of a ECG wave
+    :param wave: segmented ECG wave
+    :return: index of P and magnitude
+    '''
+    sort_ = sorted(wave[q - 100:q])
+    max_ = sort_[-1]
+    return wave.index(max_), max_
+
+
+def get_t(wave, s):
+    '''
+    Get the T position of a ECG wave
+    :param wave: segmented ECG wave
+    :return: index of T and magnitude
+    '''
+    sort_ = sorted(wave[s:s + 200])
+    max_ = sort_[-1]
+    return wave.index(max_), max_
+
+def get_p_q_s_t_index(wave, index_r):
+    '''
+    From a given wave and a R index get the PQST positions of the signal
+    :param wave: segment of the signal
+    :param index_r: R peak index
+    :return: PQST locations relative to the original signal
+    '''
+    s_index, _ = get_s(list(wave))
+    q_index, _ = get_q(list(wave))
+    t_index, _ = get_t(list(wave), s_index)
+    p_index, _ = get_p(list(wave), q_index)
+
+    return index_r - (200 - p_index), index_r - (200 - q_index), s_index - 200 + index_r, index_r + (t_index - 200)
+
+
+def segment_wave(index_r,ecg_signal,left_thr,right_thr):
+    '''
+    Segment out a PQRST wave from a signal
+
+    :param index_r: R peak index of the signal
+    :param ecg_signal: Preprocessed ecg signal
+    :param left_thr:  Left cut off value
+    :param right_thr: Right cut off value
+    :return: a PQRST segment wave
+
+    If a full wave cant be extracted return NULL (in the start of end)
+
+    '''
+    if ((index_r-left_thr) < 0) or ((index_r + right_thr) > (len(ecg_signal)-1)):
+        return None
+    else:
+        return ecg_signal[index_r-left_thr:index_r+right_thr]
+
+
+def read_old(file):
+    with open(file, 'r') as FP:
+        data = [int(x) for x in FP]
+    return data
+
+
+ecg_signal = read(DATA_DIR+'/S-test-day-01_test_2023-01-03 16_54_38.txt')
+ecg_signal_1 = ecg_signal[0:5000]
+
+print(len(ecg_signal_1))
 
 t1=time.time()
-pre_pr_ecg = pre_processing(ecg_signal)
-print ('pre-pr- time = ',time.time()-t1)
+pre_pr_ecg = pre_processing(ecg_signal_1)
+print ('pre-pr- time = ', time.time()-t1)
+
+# figure(figsize=(10, 5), dpi=100)
+# plt.plot(pre_pr_ecg, 'g')
+# plt.grid()
+# plt.title('Pre-processed ECG signal')
+# plt.tight_layout()
+# plt.show()
+
+
+index_r, value = find_r(pre_pr_ecg)
+len(index_r)
+print(index_r)
+
+
+index_p = []
+index_q = []
+index_s = []
+index_t = []
+
+rem_from_r = []  # R peaks not containing full wave segment
+index_count = 0
+
+for rr_idx in index_r:
+    wave = segment_wave(rr_idx, pre_pr_ecg, 200, 300)
+    if wave is None:
+        rem_from_r.append(index_count)
+        print ('Full wave not found')
+    else:
+        p, q, s, t = get_p_q_s_t_index(wave, rr_idx)
+        index_p.append(p)
+        index_q.append(q)
+        index_s.append(s)
+        index_t.append(t)
+    index_count += 1
+
+# filter out the non wave segments only for statistical analysis
+index_r_filtered = numpy.delete(index_r, rem_from_r)
 
 figure(figsize=(10, 5), dpi=100)
+# plt.subplot(313)
 plt.plot(pre_pr_ecg, 'g')
+
+plt.plot(index_r_filtered, pre_pr_ecg[index_r_filtered], 'ob', label='R')
+plt.plot(index_p, pre_pr_ecg[index_p], 'ro', label='P')
+plt.plot(index_q, pre_pr_ecg[index_q], 'ko', label='R')
+plt.plot(index_s, pre_pr_ecg[index_s], 'co', label='S')
+plt.plot(index_t, pre_pr_ecg[index_t], 'yo', label='T')
 plt.grid()
-plt.title('Preprocessed ECG signal')
-plt.tight_layout()
+# plt.tight_layout()
 plt.show()
