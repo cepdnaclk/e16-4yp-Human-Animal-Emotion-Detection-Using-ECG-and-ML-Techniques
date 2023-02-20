@@ -28,7 +28,7 @@ title: Human/Animal Emotion Detection Using ECG and ML Techniques
 #### Table of content
 
 1. [Abstract](#abstract)
-[comment]: # (2. [Related works](#related-works))
+[//]: # (2. [Related works](#related-works))
 3. [Methodology](#methodology)
 4. [Experiment Setup and Implementation](#experiment-setup-and-implementation)
 5. [Results and Analysis](#results-and-analysis)
