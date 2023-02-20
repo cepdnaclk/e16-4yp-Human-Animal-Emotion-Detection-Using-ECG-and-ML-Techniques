@@ -40,7 +40,7 @@ title: Human/Animal Emotion Detection Using ECG and ML Techniques
 ## Abstract
 Different kinds of machine learning models have recently been used by researchers in the field of biosensor-based human emotion recognition to identify human emotions. With only a few bio-sensors integrated, the majority of them still lack the capacity to identify human emotions with greater classification accuracy as well as the ability to identify many emotions. Convolutional neural networks have been successfully used in the machine learning field to address a variety of practical machine learning issues requiring increased classification accuracy. To emphasize that, this study proposes a deep learning method using convolutional neural networks to implement a model using electrocardiogram (ECG) signals.  Using 25 subjects, data was collected using video and audio as the emotion elicitation technique to create a dataset that consists data of nine emotions which were chosen from the valence-arousal-dominance 3D emotional model. This dataset was preprocessed and prepared to train and test the 2D CNN models. Three 2D CNN classifiers are implemented in this study. A valence based emotion classification model, an arousal based emotion classification model and a nine emotion classification model to predict the valence, arousal and the dominance values of the ECG signal and map those values to the valence-arousal-dominance 3D plane and predict the emotion. The valence based emotion classification model resulted in an accuracy of 70%, the arousal based emotion classification model resulted in an accuracy of 65% and the nine emotion classification model an accuracy of 40%.  Furthermore, we explored the possibility of using the valence based emotion classification model to predict emotions of animals, specifically the dogs and were able to predict results with an accuracy of 32%. 
 
-## Related works
+[//] ## Related works
 
 ## Methodology
 ![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Methodology%20Overview.png)
@@ -56,7 +56,7 @@ Different kinds of machine learning models have recently been used by researcher
 
 ## Conclusion
 
-## Publications
+[//] ## Publications
 [//]: # "Note: Uncomment each once you uploaded the files to the repository"
 
 <!-- 1. [Semester 7 report](./) -->
