@@ -45,13 +45,10 @@ Different kinds of machine learning models have recently been used by researcher
 ## Methodology
 ![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Methodology%20Overview.png)
 ## Experiment Setup and Implementation
-<img src="https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Human.jpeg" width="250"/>
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Human.png)
 ![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Human.jpg)
-![ ](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Animal.png)
-
-<img src=("https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Human.jpg" width="250")/>
-<img src=("https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Animal.png" width="250")/>
-<img src=("https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Animal.jpg" width="250")/>
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Electrode%20Placement_Animal.png)
+![alt text](https://github.com/cepdnaclk/e16-4yp-Human-Animal-Emotion-Detection-Using-ECG-and-ML-Techniques/blob/main/docs/images/Experimental%20Setup_Animal.jpg)
 
 ## Results and Analysis
 
