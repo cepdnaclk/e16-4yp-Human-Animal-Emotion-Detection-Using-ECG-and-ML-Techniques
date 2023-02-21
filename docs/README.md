@@ -81,7 +81,7 @@ Different kinds of machine learning models have recently been used by researcher
 1. [Semester 7 report](./Publications/Review%20Paper.pdf)
 2. [Semester 7 slides](./Publications/Semester_7_Final_Evaluation_Slides.pdf)
 3. [Semester 8 report](./)
-4. [Semester 8 slides](./Publications/Semester_8_Final_Evaluation_Slides.pdf)
+4. [Semester 8 slides](./Publications/Semester_8_Final_Evaluation.pdf)
 <!-- 5. Author 1, Author 2 and Author 3 "Research paper title" (2021). [PDF](./). -->
 
 ## Links
