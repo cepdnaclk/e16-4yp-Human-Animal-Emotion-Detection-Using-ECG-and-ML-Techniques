@@ -80,7 +80,7 @@ As an extension to the research, the possibility of recognizing animal emotions 
 1. [Semester 7 report](./Publications/Review%20Paper.pdf)
 2. [Semester 7 slides](./Publications/Semester_7_Final_Evaluation_Slides.pdf)
 3. [Semester 8 report](./)
-4. [Semester 8 slides](./Publications/Semester_8_Final_Evaluation.pdf)
+4. [Semester 8 slides](./Publications/Semester_8_Final_Evaluation_Slides.pdf)
 <!-- 5. Author 1, Author 2 and Author 3 "Research paper title" (2021). [PDF](./). -->
 
 ## Links
