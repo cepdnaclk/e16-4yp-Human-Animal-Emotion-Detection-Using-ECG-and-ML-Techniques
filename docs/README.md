@@ -48,7 +48,13 @@ Different kinds of machine learning models have recently been used by researcher
     <span><i>Figure 01: Methodology Overview</i></span>
 </p>
 
-## Experiment Setup and Implementation
+The overall procedure of the proposed emotion recognition model is shown in Figure 01. The ECG signals related to selected nine different emotions were collected by following an experimental setup. Emotions were elicited using short video clips selected from movies. To record the ECG signals the spiker shield heart and brain sensor were used together with the web application developed to automate the data collection process. The collected ECG signals were divided into identical durations of 20 seconds. After that, the segmented raw ECG signals were pr processed using different techniques to remove noises and transform them into normal form. Afterward, each ECG signal record was transformed into an image of a time-frequency spectrogram using the short-time Fourier transform (STFT). The ECG spectrogram images were fed into proposed deep two-dimensional convolutional neural network (CNN) models. 
+
+Based on the two-dimensional emotional model collected, ECG Signals were categorized in three ways. First, categorization was done based on distinct emotions.  In that categorization, signals were categorized into nine classes. The second categorization was done based on the valance of each emotion. In that case, ECG signals were categorized into two classes, positive and negative. The third categorization was done based on the arousal of emotions and ECG Signals were categorized into two classes, active and passive. A deep two-dimensional convolutional neural network (CNN) model was developed for the three categorization methods mentioned above.
+
+As an extension to the research, the possibility of recognizing animal emotions using the emotion recognition model developed using human data was explored. For that, the model based on the valence was used. Dogs were selected to experiment.  
+
+## Experiment Setup 
 <p align="center">
     <img src="./images/Electrode Placement_Human.jpeg"  width="250" /><br />
     <span><i>Figure 02: Electrode Placement in Human</i></span>
@@ -69,11 +75,6 @@ Different kinds of machine learning models have recently been used by researcher
     <span><i>Figure 05: Experimental Setup of Animal</i></span>
 </p>
 
-
-
-## Results and Analysis
-
-## Conclusion
 
 ## Publications
 [//]: # "Note: Uncomment each once you uploaded the files to the repository"
